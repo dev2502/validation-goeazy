@@ -85,16 +85,21 @@ const Register = () => {
 
   const validatePassword = () => {
     if (!user.password) {
-      setErrors((prevState) => ({
+        setErrors((prevState) => ({
         ...prevState,
-        password: "Password is required",
-      }));
-    } else {
-      setErrors((prevState) => ({
+        password: "password is required",
+        }));
+        } else if (!/^[A-Za-z0-9]{5,8}$/.test(user.password)) {
+        setErrors((prevState) => ({
+        ...prevState,
+        password: "password must contain numbers & letters",
+        }));
+        } else {
+        setErrors((prevState) => ({
         ...prevState,
         password: "",
-      }));
-    }
+        }));
+        }
   };
 
   const validateReEnterPassword = () => {
